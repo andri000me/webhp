@@ -14,7 +14,6 @@ $database= 'hp';
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
     /*** mencetak pesan kalau database sudah berhasil terhubung ***/
-    echo 'Terkoneksi dengan database';
     }
 catch(PDOException $e)
     {

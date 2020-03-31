@@ -24,18 +24,17 @@ if($res->fetchColumn() > 0)
 	$_SESSION['username'] = $username;
 	$_SESSION['level'] = $data['level'];
 	if($data['level'] =='1'){
-		header('location:admin/index_admin.php');
+		header('location:../admin/index_admin.php');
 		exit();
 	}
 	else if ($data['level'] =='2'){
-		header('location:user/index_user.php');
+		header('location:../user/index_user.php');
 		exit();
 	}
 }
 else 
 {
-	echo'gagal';
-	//header('location:login.php');
-	//exit();
+	header('location:login.php');
+	exit();
 }
 ?>

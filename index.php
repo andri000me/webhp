@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+include('function/koneksi.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,7 +35,7 @@ include('koneksi.php');
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="login.php">Login<span class="sr-only">(current)</span></a></li>
+        <li><a href="function/login.php">Login<span class="sr-only">(current)</span></a></li>
         <li><a href="form/form_input_pembeli.php">daftar</a></li>
       </ul>
 </nav>
