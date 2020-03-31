@@ -54,8 +54,13 @@ include('koneksi.php');
 </thead>
 <tbody>
 <?php
-$dais = mysql_query("select * from mobil") or die (mysql_error());
-while($data=mysql_fetch_array($dais)){
+try{
+$preparekoneksi=$dbh->prepare('select * from mobil');
+$preparekoneksi->execute();
+//$dais = mysql_query("select * from mobil") or die (mysql_error());
+//while($data=mysql_fetch_array($dais)){
+$data = $preparekoneksi->fetchAll();
+foreach($data as $data){
 ?>
 <tr>
 <td><?php echo $data['kode_mobil']; ?></td>
@@ -68,7 +73,12 @@ while($data=mysql_fetch_array($dais)){
 </tr>
 </tbody>
 <?php
+  }
 }
+catch(PDOException $e)
+    {
+    echo $e->getMessage();
+    }
 ?>
 
 </body>

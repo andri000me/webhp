@@ -1,8 +1,23 @@
 <?php
-$host='localhost';
-$user='ukom2015';
-$pass='ukom2015';
-$dbmane='ukom2015';
-$koneksi=mysql_connect($host,$user,$pass) or die (msql_error());
-$database=mysql_select_db($dbmane);
+
+/*** mysql hostname ***/
+$hostname = 'localhost';
+
+/*** mysql username ***/
+$username = 'root';
+
+/*** mysql password ***/
+$password = '';
+
+/*** mysql database ***/
+$database= 'hp';
+try {
+    $dbh = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+    /*** mencetak pesan kalau database sudah berhasil terhubung ***/
+    echo 'Terkoneksi dengan database';
+    }
+catch(PDOException $e)
+    {
+    echo $e->getMessage();
+    }
 ?>
