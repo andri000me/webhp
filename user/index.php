@@ -1,7 +1,6 @@
 <?php
 include('../function/koneksi.php');
 require_once('cek.php');
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -46,7 +45,14 @@ require_once('cek.php');
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<?php
+    //$query = mysql_fetch_array(mysql_query("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'"));
+    $strsql = ("select nama_pembeli,alamat_pembeli,telp_pembeli,merk,type,harga_mobil,gambar,cash_tgl,cash_bayar from pembeli,beli_cash,mobil,login where login.username='".$_SESSION['username']."' and beli_cash.ktp = '".$_SESSION['ktp']."' and pembeli.ktp = '".$_SESSION['ktp']."' ");
+    $preparekoneksi=$dbh->prepare($strsql);
+    $preparekoneksi->execute();
+    $data = $preparekoneksi->fetchAll();
+    if(!empty($data)){
+?>
 <table align="center" class="table-condensed table-bordered list-group table-striped table-hover">
 <thead>
 <tr>
@@ -60,16 +66,12 @@ require_once('cek.php');
 <td>gambar</td>
 <td>cash tanggal</td>
 <td> cash bayar</td>
+<td> cetak transaksi</td>
 </tr>
 </thead>
 <tbody>
 <?php 
-  //$query = mysql_fetch_array(mysql_query("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'"));
-  $strsql = ("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'");
-  $preparekoneksi=$dbh->prepare("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'");
-  $preparekoneksi->execute();
-  $data = $preparekoneksi->fetchAll();
-  echo $data['username'];
+  foreach($data as $data){
   /*
   $ktp=$query['ktp'];
   $nama_pembeli=$query['nama_pembeli'];
@@ -85,26 +87,33 @@ require_once('cek.php');
   ?>
       <tr>
           
-          <td><?php echo $data['ktp']; ?></td>
-          <td><?php echo $nama_pembeli; ?></td>
+          <td><?php echo $_SESSION['ktp']; ?></td>
+          <td><?php echo $data['nama_pembeli']; ?></td>
           
-          <td><?php echo $alamat_pembeli; ?></td>
-          <td><?php echo $telp_pembeli; ?></td>
-           <td><?php echo $merk?></td>
-				<td><?php echo $type ?></td>
-                 <td><?php echo $harga?></td>
-                 <td><img src="../admin/gambar/<?php echo $gambar ?>" width="150" height="150"/></td>
-				<td><?php echo $cash_tgl?></td>
-                <td><?php echo $cash_bayar?></td>
+          <td><?php echo $data['alamat_pembeli']; ?></td>
+          <td><?php echo $data['telp_pembeli']; ?></td>
+           <td><?php echo $data['merk']?></td>
+				<td><?php echo $data['type'] ?></td>
+                 <td><?php echo $data['harga_mobil']?></td>
+                 <td><img src="../admin/gambar/<?php echo $data['gambar'] ?>" width="150" height="150"/></td>
+				<td><?php echo $data['cash_tgl']?></td>
+                <td><?php echo $data['cash_bayar'];?></td>
                 <td><a class="btn btn-success" href="print.php"> <span class="glyphicon glyphicon-print">Print</span> </a></td>
 				
         </tr>
-   
+    <?php
+  }
+  ?>
     </tbody>
 </table>
 <center>
 <div class="h3">
-<h3>Data beli cash <?php echo $nama_pembeli;?> </h3>
+<h3>Data beli cash <?php echo $_SESSION['username'];?> </h3>
 </div>
+<?php  
+  }else 
+    {
+      echo "</div><h3>Belum ada transaksi apapun</h3>";
+    }?>
 </center>
 </body>

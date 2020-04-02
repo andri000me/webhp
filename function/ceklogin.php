@@ -16,12 +16,14 @@ foreach($data as $data)
 {
 	$data['id_login'];
 	$data['level'];
+	$data['ktp'];
 }
 $res = $dbh->query($strsql);
 if($res->fetchColumn() > 0)
 {
 	$_SESSION['id_login'] = $data['id_login'];
-	$_SESSION['username'] = $username;
+	$_SESSION['username'] = $data['username'];
+	$_SESSION['ktp'] = $data['ktp'];
 	$_SESSION['level'] = $data['level'];
 	if($data['level'] =='1'){
 		header('location:../admin/index_admin.php');

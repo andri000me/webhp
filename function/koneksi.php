@@ -10,7 +10,7 @@ $username = 'root';
 $password = '';
 
 /*** mysql database ***/
-$database= 'hp';
+$database= 'spesa';
 try {
     $dbh = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
     /*** mencetak pesan kalau database sudah berhasil terhubung ***/
