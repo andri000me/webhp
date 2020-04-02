@@ -38,7 +38,7 @@
       </ul>
 </nav>
 
-<form action="input_data_pembeli.php" method="post">
+<form action="../function/crud.php" method="post">
 <table align="center" class="table-condensed table-bordered list-group table-striped table-hover">
 <tr>
 <td>Ktp</td>

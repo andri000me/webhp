@@ -1,6 +1,7 @@
 <?php
-include('../koneksi.php');
+include('../function/koneksi.php');
 require_once('cek.php');
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -63,9 +64,13 @@ require_once('cek.php');
 </thead>
 <tbody>
 <?php 
-  $query = mysql_fetch_array(mysql_query("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'"));
-  
-  
+  //$query = mysql_fetch_array(mysql_query("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'"));
+  $strsql = ("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'");
+  $preparekoneksi=$dbh->prepare("SELECT * from pembeli,beli_cash,mobil,login where username='".$_SESSION['username']."'");
+  $preparekoneksi->execute();
+  $data = $preparekoneksi->fetchAll();
+  echo $data['username'];
+  /*
   $ktp=$query['ktp'];
   $nama_pembeli=$query['nama_pembeli'];
   $alamat_pembeli=$query['alamat_pembeli'];
@@ -76,10 +81,11 @@ require_once('cek.php');
   $gambar=$query['gambar'];  
   $cash_tgl=$query['cash_tgl'];
   $cash_bayar=$query['cash_bayar'];
+  */
   ?>
       <tr>
           
-          <td><?php echo $ktp; ?></td>
+          <td><?php echo $data['ktp']; ?></td>
           <td><?php echo $nama_pembeli; ?></td>
           
           <td><?php echo $alamat_pembeli; ?></td>

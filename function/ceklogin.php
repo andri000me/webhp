@@ -28,7 +28,7 @@ if($res->fetchColumn() > 0)
 		exit();
 	}
 	else if ($data['level'] =='2'){
-		header('location:../user/index_user.php');
+		header('location:../user/index.php');
 		exit();
 	}
 }

@@ -83,3 +83,4 @@ catch(PDOException $e)
 
 </body>
 </html>
+select nama_pembeli,alamat_pembeli,telp_pembeli,merk,type,harga_mobil,gambar,cash_tgl,cash_bayar from pembeli,beli_cash,mobil,login where username='ayu' 
