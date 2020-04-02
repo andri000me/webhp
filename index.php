@@ -29,7 +29,7 @@ include('function/koneksi.php');
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index_admin.php">HOME</a>
+      <a class="navbar-brand" href="index.php">HOME</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -83,4 +83,3 @@ catch(PDOException $e)
 
 </body>
 </html>
-select nama_pembeli,alamat_pembeli,telp_pembeli,merk,type,harga_mobil,gambar,cash_tgl,cash_bayar from pembeli,beli_cash,mobil,login where username='ayu' 
